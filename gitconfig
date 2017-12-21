@@ -1,0 +1,81 @@
+[user]
+    name = $FIRSTNAME $LASTNAME
+    email = $USER@email.com
+[core]
+    # Use custom `.gitignore` and `.gitattributes`
+    excludesfile = ~/.gitignore
+    attributesfile = ~/.gitattributes
+    whitespace = trailing-space,-space-before-tab,tab-in-indent,cr-at-eol
+
+[alias]
+    co = checkout
+    ls = log --graph --abbrev-commit --decorate --color=always --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) - %C(dim red)%an%C(reset)%C(bold yellow)%d%C(reset)' --all
+    l = log --graph --abbrev-commit --decorate --color=always --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)' --all
+    lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
+    df = diff --word-diff
+    check-whitespace = !git diff-tree --check $(git hash-object -t tree /dev/null) HEAD
+    cw = !git diff-tree --check $(git hash-object -t tree /dev/null) HEAD
+    dc = diff --cached
+    st = status -s
+    cp = cherry-pick
+    ci = commit
+    br = branch
+    r = reset
+    rh = reset --hard
+    sl = stash list
+    sa = stash apply
+    ss = stash save
+    spull = !git pull && git submodule sync --recursive && git submodule update --init --recursive
+    spush = push --recurse-submodules=on-demand
+    cw = !git diff-tree --check $(git hash-object -t tree /dev/null) HEAD
+    rm-local-and-remote = "!f(){ git checkout master; git branch -D \"$1\";  git push origin --delete \"$1\"; };f"
+
+[color]
+
+    # Use colors in Git commands that are capable of colored output when
+    # outputting to the terminal. (This is the default setting in Git ≥ 1.8.4.)
+    ui = true
+
+[color "branch"]
+
+    current = yellow reverse
+    local = yellow
+    remote = green
+
+[color "diff"]
+
+    meta = yellow bold
+    frag = magenta bold # line info
+    old = red # deletions
+    new = green # additions
+
+[color "status"]
+
+    added = yellow
+    changed = green
+    untracked = cyan
+
+[diff]
+
+    # Detect copies as well as renames
+    renames = copies
+    submodule = log
+
+[help]
+
+    # Automatically correct and execute mistyped commands
+    autocorrect = 1
+
+[push]
+    # Use the Git 1.x.x default to avoid errors on machines with old Git
+    # installations. To use `simple` instead, add this to your `~/.extra` file:
+    # `git config --global push.default simple`. See http://git.io/mMah-w.
+    default = current
+[init]
+    templatedir = ~/.git_template
+[status]
+    submoduleSummary = true
+[rerere]
+    enabled = true
+    autoupdate = true
+
